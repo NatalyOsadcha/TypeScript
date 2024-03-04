@@ -1,12 +1,10 @@
 // SIMPLE TYPES
-
-let num: number;
-let str: string;
-let bool: boolean;
-let person = 'Max';
-let empty: null;
-let notParam: undefined;
-
+var num;
+var str;
+var bool;
+var person = 'Max';
+var empty;
+var notParam;
 num = 10;
 num = -100;
 str = 'Alan';
@@ -14,39 +12,20 @@ bool = true;
 person = 'Kate';
 empty = null;
 notParam = undefined;
-
-
 // ARRAY
-
-let arr: string[] = [];
-arr = ['string', 'true']
-
-let arrNumber: number[] = [];
+var arr = [];
+arr = ['string', 'true'];
+var arrNumber = [];
 arrNumber = [1, 5, -9];
-
-let arrAny: any[];
+var arrAny;
 arrAny = [1, true, 'string', null, {}];
-
-let arrObject: { name: string }[];
+var arrObject;
 arrObject = [{ name: 'Alex' }, { name: 'Ann' }];
-
-
 // OBJECT
-
-let obj: { name: string};
+var obj;
 obj = { name: 'Mike' };
 obj.name;
-
-
-let db: {
-    id: number;
-    title: string;
-    info?: {
-        date: Date;
-        isNew?: boolean;
-    }
-};
-
+var db;
 db = {
     id: 1,
     title: 'New product',
@@ -54,103 +33,74 @@ db = {
         date: new Date(),
     }
 };
-
 // ANY
-
-let some: any;
-
+var some;
 some = -1000;
 some = true;
 // some = { name: 'Ann' };
 some.name;
-
-let number: number;
-
+var number;
 number = some;
-
-
 // UNKNOWN
-
-let something: unknown;
-
+var something;
 something = 7;
 something = 'cow';
-
-let string: string;
-
+var string;
 // string = something; /// error
-
 if (typeof something === 'string') {
     string = something;
-};
-
-
+}
+;
 // TUPLE
-
-let fixed: [string, number];
-
+var fixed;
 fixed = ['Alan', 45];
-
 fixed.push('new');
 fixed.pop();
-
-
 // ENUM
-
-enum Toggle { ENABLE, DISABLE};
-
-const service = {
-status: Toggle.ENABLE,
+var Toggle;
+(function (Toggle) {
+    Toggle[Toggle["ENABLE"] = 0] = "ENABLE";
+    Toggle[Toggle["DISABLE"] = 1] = "DISABLE";
+})(Toggle || (Toggle = {}));
+;
+var service = {
+    status: Toggle.ENABLE,
 };
-
 if (service.status === Toggle.ENABLE) {
-    console.log('It is active')
-};
-
-
+    console.log('It is active');
+}
+;
 // UNION TYPE
-
-let union: string | number | boolean;
+var union;
 union = -98;
 union = 'kiwi';
-
-function combine(param1: string | number, param2: string | number) {
+function combine(param1, param2) {
     if (typeof param1 === 'string' || typeof param2 === 'string') {
         return param1.toString() + param2.toString();
     }
     return param1 + param2;
 }
-
 console.log(combine(8, 'snow'));
 console.log(combine(3, 7));
-
-
 // LITERAL TYPE
-
-let active: 'start' | 'end';
-
+var active;
 active = 'start';
-
 /////
-
-const fruit:string[] = [];
-
-function workWithArr(arr: string[], value:string, action: 'add' | 'delete') {
+var fruit = [];
+function workWithArr(arr, value, action) {
     if (action === 'add') {
         arr.push(value);
-    } else {
-        const index = arr.indexOf(value);
+    }
+    else {
+        var index = arr.indexOf(value);
         arr.splice(index, 1);
     }
     return arr;
-};
-
+}
+;
 workWithArr(fruit, 'banana', 'add');
 workWithArr(fruit, 'lemon', 'add');
 workWithArr(fruit, 'melon', 'add');
-
 console.log(fruit);
-
 workWithArr(fruit, 'lemon', 'delete');
-
 console.log(fruit);
