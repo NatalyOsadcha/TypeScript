@@ -2,14 +2,14 @@
 var num;
 var str;
 var bool;
-var person = 'Max';
+var user = 'Max';
 var empty;
 var notParam;
 num = 10;
 num = -100;
 str = 'Alan';
 bool = true;
-person = 'Kate';
+user = 'Kate';
 empty = null;
 notParam = undefined;
 // ARRAY
@@ -104,3 +104,61 @@ workWithArr(fruit, 'melon', 'add');
 console.log(fruit);
 workWithArr(fruit, 'lemon', 'delete');
 console.log(fruit);
+/// RETURN TYPE
+function print() {
+    console.log('Some message');
+}
+//// returns nothing
+function add(num1, num2) {
+    return num1 + num2;
+}
+//// returns something
+function customError() {
+    throw new Error('Some error');
+}
+/// never finishing
+/// Example
+function createServerPerson(name) {
+    return eval("\n    (()=>{\n        return {\n            name:'".concat(name, "'\n        }\n    })()"));
+}
+function createPerson(name) {
+    return createServerPerson(name);
+}
+var person = createPerson('Alex');
+console.log(person);
+/// FUNCTION TYPE
+var foo;
+foo = function () {
+    console.log('Some text');
+};
+function calculate(num1, num2, callback) {
+    return callback(num1, num2);
+}
+;
+function minus(num1, num2) {
+    return num1 - num2;
+}
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+var result = calculate(1, 3, minus);
+var multiplyResult = calculate(2, 7, multiply);
+console.log(result);
+console.log(calculate(10, 5, minus));
+console.log(multiplyResult);
+console.log(calculate(3, 3, multiply));
+var person1 = {
+    name: 'Egle',
+    age: 32,
+    showName: function () {
+        console.log(this.name);
+    }
+};
+var person2 = {
+    name: 'Pole',
+    showName: function () {
+        console.log(this.name);
+    }
+};
+person1.showName();
+person2.showName();

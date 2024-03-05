@@ -3,7 +3,7 @@
 let num: number;
 let str: string;
 let bool: boolean;
-let person = 'Max';
+let user = 'Max';
 let empty: null;
 let notParam: undefined;
 
@@ -11,7 +11,7 @@ num = 10;
 num = -100;
 str = 'Alan';
 bool = true;
-person = 'Kate';
+user = 'Kate';
 empty = null;
 notParam = undefined;
 
@@ -154,3 +154,101 @@ console.log(fruit);
 workWithArr(fruit, 'lemon', 'delete');
 
 console.log(fruit);
+
+
+/// RETURN TYPE
+
+function print():void {
+    console.log('Some message');
+} 
+//// returns nothing
+
+function add(num1:number, num2:number):number {
+    return num1 + num2;
+}  
+
+//// returns something
+
+function customError():never {
+    throw new Error('Some error');
+}
+
+/// never finishing
+
+
+/// Example
+
+function createServerPerson(name: string) {
+    return eval(`
+    (()=>{
+        return {
+            name:'${name}'
+        }
+    })()`)
+}
+
+function createPerson(name:string):{name:string} {
+    return createServerPerson(name);
+}
+
+const person = createPerson('Alex');
+console.log(person);
+
+
+
+/// FUNCTION TYPE
+
+
+let foo: (param1:number, param2:string)=>void;
+
+foo = () => { 
+    console.log('Some text')
+};
+
+function calculate (num1:number, num2:number, callback:(arg1:number, arg2:number)=>number) {
+    return callback(num1, num2)
+};
+
+function minus(num1: number, num2:number) {
+    return num1 - num2;
+}
+
+function multiply(num1: number, num2: number) {
+    return num1 * num2;
+}
+
+const result = calculate(1, 3, minus);
+const multiplyResult = calculate(2, 7, multiply);
+
+console.log(result);
+console.log(calculate(10, 5, minus));
+console.log(multiplyResult);
+console.log(calculate(3, 3, multiply));
+
+
+/// CUSTOM TYPES
+
+type PersonType = {
+    readonly name: string;
+    age?: number;
+    showName: () => void;
+}
+
+const person1: PersonType = {
+    name: 'Egle',
+    age: 32,
+    showName() {
+        console.log(this.name)
+    }
+};
+
+const person2: PersonType = {
+    name: 'Pole',
+    showName() {
+        console.log(this.name);
+    }
+};
+
+person1.showName();
+person2.showName();
+
