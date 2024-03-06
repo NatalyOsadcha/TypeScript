@@ -1,10 +1,11 @@
+"use strict";
 // SIMPLE TYPES
-var num;
-var str;
-var bool;
-var user = 'Max';
-var empty;
-var notParam;
+let num;
+let str;
+let bool;
+let user = 'Max';
+let empty;
+let notParam;
 num = 10;
 num = -100;
 str = 'Alan';
@@ -13,19 +14,19 @@ user = 'Kate';
 empty = null;
 notParam = undefined;
 // ARRAY
-var arr = [];
+let arr = [];
 arr = ['string', 'true'];
-var arrNumber = [];
+let arrNumber = [];
 arrNumber = [1, 5, -9];
-var arrAny;
+let arrAny;
 arrAny = [1, true, 'string', null, {}];
-var arrObject;
+let arrObject;
 arrObject = [{ name: 'Alex' }, { name: 'Ann' }];
 // OBJECT
-var obj;
+let obj;
 obj = { name: 'Mike' };
 obj.name;
-var db;
+let db;
 db = {
     id: 1,
     title: 'New product',
@@ -34,25 +35,25 @@ db = {
     }
 };
 // ANY
-var some;
+let some;
 some = -1000;
 some = true;
 // some = { name: 'Ann' };
 some.name;
-var number;
+let number;
 number = some;
 // UNKNOWN
-var something;
+let something;
 something = 7;
 something = 'cow';
-var string;
+let string;
 // string = something; /// error
 if (typeof something === 'string') {
     string = something;
 }
 ;
 // TUPLE
-var fixed;
+let fixed;
 fixed = ['Alan', 45];
 fixed.push('new');
 fixed.pop();
@@ -63,7 +64,7 @@ var Toggle;
     Toggle[Toggle["DISABLE"] = 1] = "DISABLE";
 })(Toggle || (Toggle = {}));
 ;
-var service = {
+const service = {
     status: Toggle.ENABLE,
 };
 if (service.status === Toggle.ENABLE) {
@@ -71,7 +72,7 @@ if (service.status === Toggle.ENABLE) {
 }
 ;
 // UNION TYPE
-var union;
+let union;
 union = -98;
 union = 'kiwi';
 function combine(param1, param2) {
@@ -83,16 +84,16 @@ function combine(param1, param2) {
 console.log(combine(8, 'snow'));
 console.log(combine(3, 7));
 // LITERAL TYPE
-var active;
+let active;
 active = 'start';
 /////
-var fruit = [];
+const fruit = [];
 function workWithArr(arr, value, action) {
     if (action === 'add') {
         arr.push(value);
     }
     else {
-        var index = arr.indexOf(value);
+        const index = arr.indexOf(value);
         arr.splice(index, 1);
     }
     return arr;
@@ -119,16 +120,21 @@ function customError() {
 /// never finishing
 /// Example
 function createServerPerson(name) {
-    return eval("\n    (()=>{\n        return {\n            name:'".concat(name, "'\n        }\n    })()"));
+    return eval(`
+    (()=>{
+        return {
+            name:'${name}'
+        }
+    })()`);
 }
 function createPerson(name) {
     return createServerPerson(name);
 }
-var person = createPerson('Alex');
+const person = createPerson('Alex');
 console.log(person);
 /// FUNCTION TYPE
-var foo;
-foo = function () {
+let foo;
+foo = () => {
     console.log('Some text');
 };
 function calculate(num1, num2, callback) {
@@ -141,22 +147,22 @@ function minus(num1, num2) {
 function multiply(num1, num2) {
     return num1 * num2;
 }
-var result = calculate(1, 3, minus);
-var multiplyResult = calculate(2, 7, multiply);
+const result = calculate(1, 3, minus);
+const multiplyResult = calculate(2, 7, multiply);
 console.log(result);
 console.log(calculate(10, 5, minus));
 console.log(multiplyResult);
 console.log(calculate(3, 3, multiply));
-var person1 = {
+const person1 = {
     name: 'Egle',
     age: 32,
-    showName: function () {
+    showName() {
         console.log(this.name);
     }
 };
-var person2 = {
+const person2 = {
     name: 'Pole',
-    showName: function () {
+    showName() {
         console.log(this.name);
     }
 };
